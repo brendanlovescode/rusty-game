@@ -14,21 +14,19 @@ html, body {
   padding: 10px 12px;
   border-radius: 8px;
   box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-  max-width: 320px;
+  max-width: 360px;
 }
 
-#title {
-  font-weight: 600;
-  margin-bottom: 6px;
-}
+#title { font-weight: 700; margin-bottom: 6px; }
+#instructions { font-size: 13px; color: #333; margin-bottom: 6px; }
+#info { font-size: 12px; color: #222; }
 
-#instructions {
-  font-size: 13px;
-  color: #333;
-  margin-bottom: 6px;
-}
-
-#info {
-  font-size: 12px;
-  color: #222;
+#crosshair {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: rgba(0,0,0,0.8);
+  font-weight: 700;
+  pointer-events: none;
 }
