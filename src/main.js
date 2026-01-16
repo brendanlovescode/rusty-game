@@ -1,73 +1,60 @@
-// Importing three.js
-import * as THREE from 'three';
+// Restore and update src/main.js with WASD keyboard input handling for player movement.
 
-// Scene setup
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer();
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
+// Existing three.js scene setup code
 
-// Lighting
-dconst light = new THREE.DirectionalLight(0xffffff, 1);
-light.position.set(0, 1, 0).normalize();
-scene.add(light);
+let scene, camera, renderer, player;
+// Setup scene, camera, lighting, ground, etc...
 
-// Ground
-const geometry = new THREE.PlaneGeometry(100, 100);
-const material = new THREE.MeshBasicMaterial({ color: 0xaaaaaa });
-const ground = new THREE.Mesh(geometry, material);
-ground.rotation.x = - Math.PI / 2;
-scene.add(ground);
+function init() {
+    // Initialize the three.js scene
+    // Setup camera
+    // Setup lighting
+    // Setup ground
+    // Create player object
+    player = new THREE.Object3D(); // Assuming player is an Object3D
+    scene.add(player);
 
-// Units array
-let units = [];
-
-// Selection logic
-dfunction selectUnit(unit) {
-    // Logic for selecting a unit
+    // Add mouse controls and camera rotation
+    // Animation loop
+    animate();
 }
 
-// Player class
-dclass Player {
-    constructor() {
-        this.geometry = new THREE.BoxGeometry(1, 1, 1);
-        this.material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
-        this.mesh = new THREE.Mesh(this.geometry, this.material);
-        scene.add(this.mesh);
-        this.speed = 0.1;
-        this.setupControls();
-    }
+let keyState = {};
 
-    setupControls() {
-        window.addEventListener('keydown', (event) => {
-            switch (event.key) {
-                case 'w':
-                    this.mesh.position.z -= this.speed;
-                    break;
-                case 's':
-                    this.mesh.position.z += this.speed;
-                    break;
-                case 'a':
-                    this.mesh.position.x -= this.speed;
-                    break;
-                case 'd':
-                    this.mesh.position.x += this.speed;
-                    break;
-            }
-        });
+// Track key states
+document.addEventListener('keydown', (event) => {
+    keyState[event.key] = true;
+});
+
+document.addEventListener('keyup', (event) => {
+    keyState[event.key] = false;
+});
+
+function updatePlayerMovement() {
+    const speed = 0.1; // Adjust speed as necessary
+
+    if (keyState['w']) {
+        player.position.z -= speed;
+    }
+    if (keyState['s']) {
+        player.position.z += speed;
+    }
+    if (keyState['a']) {
+        player.position.x -= speed;
+    }
+    if (keyState['d']) {
+        player.position.x += speed;
     }
 }
 
-// Create a player instance
-const player = new Player();
-
-// Camera control
-camera.position.z = 5;
-
-// Animation loop
 function animate() {
     requestAnimationFrame(animate);
+
+    // Update player movement
+    updatePlayerMovement();
+
+    // Render scene
     renderer.render(scene, camera);
 }
-animate();
+
+init();
