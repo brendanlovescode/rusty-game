@@ -1,37 +1,33 @@
 class Player {
-    constructor(name) {
-        this.name = name;
-        this.position = { x: 0, y: 0, z: 0 }; // XYZ coordinates
-        this.speed = 1; // Movement speed
+    constructor() {
+        this.position = { x: 0, y: 0, z: 0 }; // Initialize player position
+        this.speed = 1; // Speed of movement
     }
 
-    move(direction) {
-        switch (direction) {
-            case 'w': // move forward
-                this.position.z += this.speed;
-                break;
-            case 's': // move backward
-                this.position.z -= this.speed;
-                break;
-            case 'a': // move left
-                this.position.x -= this.speed;
-                break;
-            case 'd': // move right
-                this.position.x += this.speed;
-                break;
-            default:
-                console.log('Invalid direction. Use w, a, s, d.');
-        }
+    moveForward() {
+        this.position.z += this.speed; // Move forward in the Z direction
     }
 
-    getPosition() {
-        return this.position;
+    moveBackward() {
+        this.position.z -= this.speed; // Move backward in the Z direction
+    }
+
+    moveLeft() {
+        this.position.x -= this.speed; // Move left in the X direction
+    }
+
+    moveRight() {
+        this.position.x += this.speed; // Move right in the X direction
+    }
+
+    displayPosition() {
+        console.log(`Player Position: X: ${this.position.x}, Y: ${this.position.y}, Z: ${this.position.z}`);
     }
 }
 
-// Event listener for key presses
-window.addEventListener('keydown', (event) => {
-    const player = new Player('Hero');
-    player.move(event.key);
-    console.log(`Player position: ${JSON.stringify(player.getPosition())}`);
-});
+// Example usage:
+const player = new Player();
+// Simulate movement
+player.moveForward();
+player.moveRight();
+player.displayPosition();
