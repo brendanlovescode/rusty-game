@@ -1,33 +1,39 @@
 class Player {
-    constructor() {
-        this.position = { x: 0, y: 0, z: 0 }; // Initialize player position
-        this.speed = 1; // Speed of movement
+    constructor(position, speed) {
+        this.position = position; // x, y, z coordinates
+        this.speed = speed;
+        this.cameraOffset = { x: 0, y: 5, z: -10 }; // Camera follows the player from above and behind
     }
 
-    moveForward() {
-        this.position.z += this.speed; // Move forward in the Z direction
+    move(input) {
+        // input should be an object with keys: WASD
+        if (input.W) {
+            this.position.y += this.speed; // Move forward
+        }
+        if (input.S) {
+            this.position.y -= this.speed; // Move backward
+        }
+        if (input.A) {
+            this.position.x -= this.speed; // Move left
+        }
+        if (input.D) {
+            this.position.x += this.speed; // Move right
+        }
     }
 
-    moveBackward() {
-        this.position.z -= this.speed; // Move backward in the Z direction
+    followCamera(camera) {
+        // Set camera position based on player's position
+        camera.position.x = this.position.x + this.cameraOffset.x;
+        camera.position.y = this.position.y + this.cameraOffset.y;
+        camera.position.z = this.position.z + this.cameraOffset.z;
+        camera.lookAt(this.position.x, this.position.y, this.position.z);
     }
 
-    moveLeft() {
-        this.position.x -= this.speed; // Move left in the X direction
-    }
-
-    moveRight() {
-        this.position.x += this.speed; // Move right in the X direction
-    }
-
-    displayPosition() {
-        console.log(`Player Position: X: ${this.position.x}, Y: ${this.position.y}, Z: ${this.position.z}`);
+    getAppearance() {
+        // Return appearance property, can be further developed
+        return 'blocky'; // Reserved for Rust styling
     }
 }
 
-// Example usage:
-const player = new Player();
-// Simulate movement
-player.moveForward();
-player.moveRight();
-player.displayPosition();
+// Export the Player class
+export default Player;
