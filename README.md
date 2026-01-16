@@ -1,6 +1,6 @@
 # rusty-game
 
-A simple, beginner-friendly three.js demo for a tiny RTS-like experience.
+A simple, beginner-friendly three.js demo for a tiny RTS-like Rust experience.
 
 How to run (quick):
 - Clone the repo and open `index.html` in a modern browser (Chrome/Edge/Firefox).
