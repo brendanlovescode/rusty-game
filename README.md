@@ -1,4 +1,4 @@
-# rusty-game
+# rusty-game (rts)
 
 A simple, beginner-friendly three.js demo for a tiny RTS-like Rust experience.
 
