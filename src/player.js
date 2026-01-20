@@ -1,8 +1,10 @@
 class Player {
     constructor(position, speed) {
-        this.position = position; // x, y, z coordinates
+         // x, y, z coordinates
+        this.position = position;
         this.speed = speed;
-        this.cameraOffset = { x: 0, y: 5, z: -10 }; // Camera follows the player from above and behind
+        // Camera follows the player from above and behind
+        this.cameraOffset = { x: 0, y: 5, z: -10 };
     }
 
     move(input) {
